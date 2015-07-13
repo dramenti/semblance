@@ -9,7 +9,7 @@ struct command code [MAX_CODE_SIZE];
 FILE *code_file;
 int data [MAX_DATA_SIZE];
 int codesize;
-int PC;
+int PC, SP, BP;
 int (*instruction_set[ISET_SIZE]) (struct command*);
 int reg [NUM_REG];
 
@@ -20,6 +20,7 @@ int reg [NUM_REG];
 void exec_code() {
     int info;
     for (PC = 1; PC < codesize; PC++) {
+        reg[80] = PC; //load PC register with PC value
         info = (*instruction_set[code[PC].instr])(code+PC);
     }
 }
