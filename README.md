@@ -8,3 +8,4 @@ Jaychine code consists of instructions of the form: (decimal integer) (decimal i
 
 First number is the instruction opcode, second two are operands.
 
+The example program euclid.s is an implementation of Euclid's Algorithm.
