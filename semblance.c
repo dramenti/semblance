@@ -31,10 +31,10 @@ int main(int argc, char *argv[]) {
     }
     code_file = fopen(argv[1], "r");
     read_file();
-    printf("Finished reading file\n");
+/*    printf("Finished reading file\n");
     for (int i = 1; i < 5; i++) {
         printf("%d\n", data[i]);
-    }
+    }*/
     fclose(code_file);
     initialize_instruction_set();
     exec_code();
