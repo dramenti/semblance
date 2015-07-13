@@ -1,9 +1,9 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
-#define MAX_DATA_SIZE 256
+#define MAX_DATA_SIZE 1000
 #define MAX_STACK_SIZE 1000
 #define MAX_CODE_SIZE 1000
-#define NUM_REG 20
+#define NUM_REG 100
 #define ISET_SIZE 100
 #include <stdio.h>
 
