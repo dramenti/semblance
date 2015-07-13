@@ -1,4 +1,5 @@
 #include "iset.h"
+#include "semcall.h"
 
 int iadd (struct command *cmd) {
     // OP1 <-- OP1 + OP2
@@ -81,6 +82,11 @@ int movr (struct command *cmd) {
     reg[cmd->operand1] = reg[cmd->operand2];
     return 0;
 }
+
+int scall (struct command *cmd) {
+    semcall(cmd->operand1);
+    return 0;
+}
 int end (struct command *cmd) {
     return 1;
 }
@@ -100,6 +106,7 @@ void initialize_instruction_set() {
     instruction_set[9] = jcon;
     instruction_set[20] = setr;
     instruction_set[19] = movr;
+    instruction_set[30] = scall;
     instruction_set[0] = end;
     /*instruction_set[]
     instruction_set[]

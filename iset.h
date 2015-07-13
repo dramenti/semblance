@@ -18,6 +18,7 @@ int jump (struct command *cmd);
 int jcon (struct command *cmd);
 int setr (struct command *cmd);
 int movr (struct command *cmd);
+int scall (struct command *cmd);
 int end (struct command *cmd);
 
 /* maps opcodes to function pointers */
