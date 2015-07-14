@@ -1,5 +1,6 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
+#THE ASSEMBLER
 import sys
 comment_char = ';'
 output = list()
@@ -47,6 +48,7 @@ def initialize_convert():
     opcode_map["printint"]=1 
     opcode_map["readint"]=10
 
+"""Converts w from a string to integer opcode, but leaves label references untouched"""
 def convert(w):
     if w in opcode_map:
         return str(opcode_map[w])
@@ -86,7 +88,8 @@ def line_assemble(line):
     if len(words) < 3:
         output.append('0')
     output.append('\n')
-    
+
+"""Replaces labels with numbers, leaves all else untouched"""
 def second_pass(el):
     if el.startswith(':'):
         el = labels[el[1:].rstrip()]
@@ -96,7 +99,7 @@ if len(sys.argv) == 3:
     initialize_convert()
     with open(sys.argv[1]) as file:
         for line in file:
-            line = line.split(';')[0]
+            line = line.split(comment_char)[0]
             if codeline == 0:
                 output.append('0')
                 output.append('\n')
