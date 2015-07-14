@@ -23,3 +23,7 @@ To execute the compiled file, do ./semblance [output file name]
 * semcall.c: contains system call functions for printf and scanf
 * globals.h: global variables
 * jaysembly.py: the assembler written in Python
+
+###To do
+Right now, files have to start with .code on line 1 because .data
+hasn't been implemented yet.
