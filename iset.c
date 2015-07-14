@@ -62,12 +62,12 @@ int neq (struct command *cmd) {
 }
 
 int jump (struct command *cmd) {
-    PC = cmd->operand1;
+    reg[PC_loc] = cmd->operand1;
     return 0;
 }
 int jcon (struct command *cmd) {
     if (reg[cmd->operand2]) {
-        PC = cmd->operand1;
+        reg[PC_loc] = cmd->operand1;
     }
     return 0;
 }
@@ -85,6 +85,50 @@ int movr (struct command *cmd) {
 
 int scall (struct command *cmd) {
     semcall(cmd->operand1);
+    return 0;
+}
+int bpload (struct command *cmd) {
+    reg[cmd->operand1] = data[reg[BP_loc]+cmd->operand2]; //offset from BP
+    return 0;
+}
+
+int bpstore (struct command *cmd) {
+    data[reg[BP_loc]+cmd->operand1] = reg[cmd->operand1];
+    return 0;
+}
+
+int call (struct command *cmd) {
+    reg[SP_loc]++;
+    data[reg[SP_loc]] = reg[PC_loc];
+    reg[PC_loc] = cmd->operand1;
+    return 0;
+}
+
+int ret (struct command *cmd) {
+    reg[PC_loc] = data[reg[SP_loc]];
+    reg[SP_loc]--;
+    return 0;
+}
+
+int pushr (struct command *cmd) {
+    reg[SP_loc]++;
+    data[reg[SP_loc]] = reg[cmd->operand1];
+    return 0;
+}
+
+int popr (struct command *cmd) {
+    reg[cmd->operand1] = data[reg[SP_loc]];
+    reg[SP_loc]--;
+    return 0;
+}
+
+int addim (struct command *cmd) {
+    reg[cmd->operand1] += cmd->operand2;
+    return 0;
+}
+
+int subim (struct command *cmd) {
+    reg[cmd->operand1] -= cmd->operand2;
     return 0;
 }
 int end (struct command *cmd) {
@@ -108,11 +152,13 @@ void initialize_instruction_set() {
     instruction_set[19] = movr;
     instruction_set[30] = scall;
     instruction_set[0] = end;
-    /*instruction_set[]
-    instruction_set[]
-    instruction_set[]
-    instruction_set[]
-    instruction_set[]
-    instruction_set[]
-    instruction_set[]*/
+    instruction_set[31] = bpload;
+    instruction_set[32] = bpstore;
+    instruction_set[33] = call;
+    instruction_set[34] = ret;
+    instruction_set[35] = pushr;
+    instruction_set[36] = popr;
+    instruction_set[38] = addim;
+    instruction_set[39] = subim;
+    /*instruction_set[]*/
 }

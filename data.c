@@ -22,6 +22,10 @@ void read_data() {
         //address, value is ready to be stored into data
         data[address] = value;
     }
+    /* TEMPORARY FIX: just start the stack at 30!
+     * better solutions: change the way the data is read OR deunify stack and data again*/
+    reg[SP_loc] = 30;
+    reg[BP_loc] = 30;
 }
 
 void read_code() {

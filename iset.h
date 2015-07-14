@@ -19,8 +19,15 @@ int jcon (struct command *cmd);
 int setr (struct command *cmd);
 int movr (struct command *cmd);
 int scall (struct command *cmd);
+int bpload (struct command *cmd);
+int bpstore (struct command *cmd);
+int call (struct command *cmd);
+int ret (struct command *cmd);
+int pushr (struct command *cmd);
+int popr (struct command *cmd);
+int addim (struct command *cmd);
+int subim (struct command *cmd);
 int end (struct command *cmd);
-
 /* maps opcodes to function pointers */
 void initialize_instruction_set();
 
