@@ -131,6 +131,19 @@ int subim (struct command *cmd) {
     reg[cmd->operand1] -= cmd->operand2;
     return 0;
 }
+
+int retcon (struct command *cmd) {
+    if (reg[cmd->operand1])
+        ret(cmd);
+    return 0;
+}
+
+int callcon (struct command *cmd) {
+    if (reg[cmd->operand2])
+        call(cmd);
+    return 0;
+}
+
 int end (struct command *cmd) {
     return 1;
 }
@@ -160,5 +173,7 @@ void initialize_instruction_set() {
     instruction_set[36] = popr;
     instruction_set[38] = addim;
     instruction_set[39] = subim;
+    instruction_set[40] = retcon;
+    instruction_set[41] = callcon;
     /*instruction_set[]*/
 }

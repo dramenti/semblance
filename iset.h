@@ -27,6 +27,8 @@ int pushr (struct command *cmd);
 int popr (struct command *cmd);
 int addim (struct command *cmd);
 int subim (struct command *cmd);
+int retcon (struct command *cmd);
+int callcon (struct command *cmd);
 int end (struct command *cmd);
 /* maps opcodes to function pointers */
 void initialize_instruction_set();
