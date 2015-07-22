@@ -19,6 +19,7 @@ def initialize_convert():
     opcode_map["andl"]=16
     opcode_map["orl"]=17
     opcode_map["eq"]=21
+    opcode_map["neq"]=22
     opcode_map["jump"]=8
     opcode_map["jcon"]=9
     opcode_map["setr"]=20
@@ -109,3 +110,5 @@ if len(sys.argv) == 3:
     output = [second_pass(el) for el in output]
     with open(sys.argv[2], 'w') as out_file:
         out_file.write(''.join(output))
+else:
+    print("Correct usage: jaysembler.py [input file name] [target name]")

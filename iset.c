@@ -175,5 +175,6 @@ void initialize_instruction_set() {
     instruction_set[39] = subim;
     instruction_set[40] = retcon;
     instruction_set[41] = callcon;
+    instruction_set[22] = neq;
     /*instruction_set[]*/
 }
